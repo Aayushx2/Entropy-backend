@@ -1,0 +1,580 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Entropy Productions - Revolutionize Filmmaking for Teens</title>
+    <link rel="stylesheet" href="styles.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+</head>
+<body>
+    <!-- Header -->
+    <header class="header">
+        <nav class="nav">
+            <div class="nav-brand">
+                <h1 class="logo">ENTROPY</h1>
+                <span class="logo-subtitle">PRODUCTIONS</span>
+            </div>
+            <ul class="nav-menu">
+                <li><a href="#home" class="nav-link active">Home</a></li>
+                <li><a href="#about" class="nav-link">About</a></li>
+                <li><a href="#modules" class="nav-link">Modules</a></li>
+                <li><a href="#mylearning" class="nav-link" id="mylearning-nav" style="display: none;">My Learning</a></li>
+                <li><a href="#workshops" class="nav-link">Workshops</a></li>
+                <li><a href="#community" class="nav-link">Community</a></li>
+                <li><a href="#signup" class="nav-link" id="signup-nav">Sign Up</a></li>
+                <li><a href="#" class="nav-link" id="logout-nav" onclick="logout()" style="display: none;">Logout</a></li>
+            </ul>
+            <div class="hamburger">
+                <span></span>
+                <span></span>
+                <span></span>
+            </div>
+        </nav>
+    </header>
+
+    <!-- Main Content -->
+    <main>
+        <!-- Home Section -->
+        <section id="home" class="section active">
+            <div class="hero">
+                <div class="hero-content">
+                    <h1 class="hero-title">Revolutionize Filmmaking for Teens</h1>
+                    <p class="hero-subtitle">Learn, Create, Collaborate</p>
+                    <div class="hero-description">
+                        <div class="vision-mission">
+                            <div class="vision">
+                                <h3>Vision</h3>
+                                <p>Build a dynamic ecosystem where teenage creators can learn, collaborate, and showcase talents globally</p>
+                            </div>
+                            <div class="mission">
+                                <h3>Mission</h3>
+                                <p>Provide tools, mentorship, and platforms to amplify voices and nurture innovators</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="hero-cta">
+                        <button class="btn btn-primary" onclick="showSection('signup')">Sign Up Now</button>
+                        <button class="btn btn-secondary" onclick="showSection('modules')">Explore Modules</button>
+                    </div>
+                </div>
+                <div class="hero-carousel">
+                    <div class="carousel-container">
+                        <div class="carousel-slide active">
+                            <div class="creator-card">
+                                <div class="creator-image">
+                                    <i class="fas fa-video"></i>
+                                </div>
+                                <h4>Aayush Kumar, 17</h4>
+                                <p>Film Director</p>
+                            </div>
+                        </div>
+                        <div class="carousel-slide">
+                            <div class="creator-card">
+                                <div class="creator-image">
+                                    <i class="fas fa-palette"></i>
+                                </div>
+                                <h4>Adarsh, 16</h4>
+                                <p>Designer</p>
+                            </div>
+                        </div>
+                        <div class="carousel-slide">
+                            <div class="creator-card">
+                                <div class="creator-image">
+                                    <i class="fas fa-music"></i>
+                                </div>
+                                <h4>Johann, 17</h4>
+                                <p>Music Producer</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="carousel-dots">
+                        <span class="dot active" onclick="currentSlide(1)"></span>
+                        <span class="dot" onclick="currentSlide(2)"></span>
+                        <span class="dot" onclick="currentSlide(3)"></span>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- About Section -->
+        <section id="about" class="section">
+            <div class="container">
+                <h2 class="section-title">About Us</h2>
+                <div class="about-content">
+                    <div class="about-text">
+                        <h3>What is Entropy Productions?</h3>
+                        <p>Entropy Productions is a dynamic startup founded by a teen, for teens. We focus on creating impactful visual content and building a supportive community where young creators can thrive. Our platform bridges the gap in the creator economy by providing dedicated spaces for teenage filmmakers, designers, and musicians to learn, grow, and showcase their talents.</p>
+                        
+                        <div class="vision-mission-detailed">
+                            <div class="vision-detailed">
+                                <h3><i class="fas fa-eye"></i> Our Vision</h3>
+                                <p>Build a dynamic ecosystem where teenage creators can learn, collaborate, and showcase talents globally. We envision a world where every young creator has access to the tools, mentorship, and community they need to turn their creative dreams into reality.</p>
+                            </div>
+                            <div class="mission-detailed">
+                                <h3><i class="fas fa-rocket"></i> Our Mission</h3>
+                                <p>Provide tools, mentorship, and platforms to amplify voices and nurture innovators. We're committed to breaking down barriers in the creative industry and empowering the next generation of content creators through hands-on learning, collaboration, and real-world experience.</p>
+                            </div>
+                        </div>
+
+                        <div class="founder-bio">
+                            <h3>Meet Our Founder</h3>
+                            <div class="founder-card">
+                                <div class="founder-image">
+                                    <i class="fas fa-user"></i>
+                                </div>
+                                <div class="founder-info">
+                                    <h4>Aayush Kumar, 17</h4>
+                                    <p>Founder & CEO</p>
+                                    <p>The visionary mind behind Entropy Productions, a platform born from creativity, curiosity, and the drive to empower learners. With a deep passion for design, filmmaking, and music, Aayush founded Entropy Productions to bridge the gap between ideas and execution — helping aspiring creators turn imagination into impactful work.</p>
+                                    <p>Driven by the belief that creativity is not just a skill but a language, Aayush's mission is to make learning accessible, practical, and inspiring for everyone. His journey reflects a relentless pursuit of innovation and storytelling, and through Entropy Productions, he continues to build a community where creators explore, experiment, and evolve.</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- My Learning Section -->
+        <section id="mylearning" class="section">
+            <div class="container">
+                <h2 class="section-title">My Learning</h2>
+                <div class="learning-content">
+                    <div class="learning-stats">
+                        <div class="stat-card">
+                            <h3 id="enrolled-count">0</h3>
+                            <p>Courses Enrolled</p>
+                        </div>
+                        <div class="stat-card">
+                            <h3 id="completed-count">0</h3>
+                            <p>Courses Completed</p>
+                        </div>
+                        <div class="stat-card">
+                            <h3 id="progress-percentage">0%</h3>
+                            <p>Overall Progress</p>
+                        </div>
+                    </div>
+                    
+                    <div class="learning-tabs">
+                        <button class="learning-tab-btn active" onclick="showLearningCategory('enrolled')">Enrolled Courses</button>
+                        <button class="learning-tab-btn" onclick="showLearningCategory('completed')">Completed</button>
+                        <button class="learning-tab-btn" onclick="showLearningCategory('recommended')">Recommended</button>
+                    </div>
+                    
+                    <div class="learning-modules">
+                        <div id="enrolled-modules" class="learning-category active">
+                            <div class="learning-grid" id="enrolled-grid">
+                                <div class="no-courses">
+                                    <i class="fas fa-graduation-cap"></i>
+                                    <h3>No courses enrolled yet</h3>
+                                    <p>Start your learning journey by enrolling in a course!</p>
+                                    <button class="btn btn-primary" onclick="showSection('modules')">Browse Courses</button>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div id="completed-modules" class="learning-category">
+                            <div class="learning-grid" id="completed-grid">
+                                <div class="no-courses">
+                                    <i class="fas fa-trophy"></i>
+                                    <h3>No completed courses yet</h3>
+                                    <p>Complete your enrolled courses to see them here!</p>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div id="recommended-modules" class="learning-category">
+                            <div class="learning-grid" id="recommended-grid">
+                                <div class="no-courses">
+                                    <i class="fas fa-lightbulb"></i>
+                                    <h3>No recommendations yet</h3>
+                                    <p>Complete some courses to get personalized recommendations!</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Learning Modules Section -->
+        <section id="modules" class="section">
+            <div class="container">
+                <h2 class="section-title">Learning Modules</h2>
+                <div class="modules-tabs">
+                    <button class="tab-btn active" onclick="showModuleCategory('design')">Design</button>
+                    <button class="tab-btn" onclick="showModuleCategory('filmmaking')">Filmmaking</button>
+                    <button class="tab-btn" onclick="showModuleCategory('music')">Music</button>
+                </div>
+                
+                <div class="modules-content">
+                    <!-- Design Modules -->
+                    <div id="design-modules" class="module-category active">
+                        <div class="modules-grid">
+                            <div class="module-card">
+                                <div class="module-preview">
+                                    <i class="fas fa-paint-brush"></i>
+                                </div>
+                                <h3>Intro to Graphic Design</h3>
+                                <p>Learn the fundamentals of visual design, color theory, and typography. Perfect for beginners!</p>
+                                <div class="module-video">
+                                    <iframe src="https://www.youtube.com/embed/dQw4w9WgXcQ" frameborder="0" allowfullscreen></iframe>
+                                </div>
+                                <button class="btn btn-primary" onclick="enrollModule('design-intro')">Enroll Now</button>
+                            </div>
+                            <div class="module-card">
+                                <div class="module-preview">
+                                    <i class="fas fa-mobile-alt"></i>
+                                </div>
+                                <h3>UI/UX Design Basics</h3>
+                                <p>Master user interface and experience design principles for digital products.</p>
+                                <div class="module-video">
+                                    <iframe src="https://www.youtube.com/embed/dQw4w9WgXcQ" frameborder="0" allowfullscreen></iframe>
+                                </div>
+                                <button class="btn btn-primary" onclick="enrollModule('design-ui')">Enroll Now</button>
+                            </div>
+                            <div class="module-card">
+                                <div class="module-preview">
+                                    <i class="fas fa-camera"></i>
+                                </div>
+                                <h3>Digital Photography</h3>
+                                <p>Capture stunning images with professional techniques and composition rules.</p>
+                                <div class="module-video">
+                                    <iframe src="https://www.youtube.com/embed/dQw4w9WgXcQ" frameborder="0" allowfullscreen></iframe>
+                                </div>
+                                <button class="btn btn-primary" onclick="enrollModule('design-photo')">Enroll Now</button>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Filmmaking Modules -->
+                    <div id="filmmaking-modules" class="module-category">
+                        <div class="modules-grid">
+                            <div class="module-card">
+                                <div class="module-preview">
+                                    <i class="fas fa-film"></i>
+                                </div>
+                                <h3>Intro to Storyboarding</h3>
+                                <p>Plan your films with professional storyboarding techniques and visual storytelling.</p>
+                                <div class="module-video">
+                                    <iframe src="https://www.youtube.com/embed/dQw4w9WgXcQ" frameborder="0" allowfullscreen></iframe>
+                                </div>
+                                <button class="btn btn-primary" onclick="enrollModule('film-storyboard')">Enroll Now</button>
+                            </div>
+                            <div class="module-card">
+                                <div class="module-preview">
+                                    <i class="fas fa-video"></i>
+                                </div>
+                                <h3>Cinematography 101</h3>
+                                <p>Learn camera angles, lighting, and shot composition for compelling visuals.</p>
+                                <div class="module-video">
+                                    <iframe src="https://www.youtube.com/embed/dQw4w9WgXcQ" frameborder="0" allowfullscreen></iframe>
+                                </div>
+                                <button class="btn btn-primary" onclick="enrollModule('film-cinema')">Enroll Now</button>
+                            </div>
+                            <div class="module-card">
+                                <div class="module-preview">
+                                    <i class="fas fa-cut"></i>
+                                </div>
+                                <h3>Video Editing Mastery</h3>
+                                <p>Master post-production with industry-standard editing software and techniques.</p>
+                                <div class="module-video">
+                                    <iframe src="https://www.youtube.com/embed/dQw4w9WgXcQ" frameborder="0" allowfullscreen></iframe>
+                                </div>
+                                <button class="btn btn-primary" onclick="enrollModule('film-editing')">Enroll Now</button>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Music Modules -->
+                    <div id="music-modules" class="module-category">
+                        <div class="modules-grid">
+                            <div class="module-card">
+                                <div class="module-preview">
+                                    <i class="fas fa-music"></i>
+                                </div>
+                                <h3>Music Production Basics</h3>
+                                <p>Create professional-quality tracks using digital audio workstations and mixing techniques.</p>
+                                <div class="module-video">
+                                    <iframe src="https://www.youtube.com/embed/dQw4w9WgXcQ" frameborder="0" allowfullscreen></iframe>
+                                </div>
+                                <button class="btn btn-primary" onclick="enrollModule('music-production')">Enroll Now</button>
+                            </div>
+                            <div class="module-card">
+                                <div class="module-preview">
+                                    <i class="fas fa-microphone"></i>
+                                </div>
+                                <h3>Audio Recording & Mixing</h3>
+                                <p>Learn professional recording techniques and audio mixing for crystal-clear sound.</p>
+                                <div class="module-video">
+                                    <iframe src="https://www.youtube.com/embed/dQw4w9WgXcQ" frameborder="0" allowfullscreen></iframe>
+                                </div>
+                                <button class="btn btn-primary" onclick="enrollModule('music-audio')">Enroll Now</button>
+                            </div>
+                            <div class="module-card">
+                                <div class="module-preview">
+                                    <i class="fas fa-headphones"></i>
+                                </div>
+                                <h3>Sound Design for Film</h3>
+                                <p>Create immersive soundscapes and audio effects for video projects.</p>
+                                <div class="module-video">
+                                    <iframe src="https://www.youtube.com/embed/dQw4w9WgXcQ" frameborder="0" allowfullscreen></iframe>
+                                </div>
+                                <button class="btn btn-primary" onclick="enrollModule('music-sound')">Enroll Now</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="coming-soon">
+                    <h3>More Coming Soon!</h3>
+                    <p>We're constantly adding new modules and courses. Stay tuned for advanced topics and specialized workshops.</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Workshops Section -->
+        <section id="workshops" class="section">
+            <div class="container">
+                <h2 class="section-title">Upcoming Workshops</h2>
+                <div class="workshops-list">
+                    <div class="workshop-card">
+                        <div class="workshop-header">
+                            <h3>Live Filmmaking Session</h3>
+                            <span class="workshop-date">November 15, 2025</span>
+                        </div>
+                        <p>Join us for an interactive live session where you'll learn hands-on filmmaking techniques, from pre-production planning to post-production editing. Perfect for all skill levels!</p>
+                        <div class="workshop-details">
+                            <span class="duration"><i class="fas fa-clock"></i> 3 hours</span>
+                            <span class="level"><i class="fas fa-signal"></i> All Levels</span>
+                            <span class="price"><i class="fas fa-dollar-sign"></i> Free</span>
+                        </div>
+                        <button class="btn btn-primary" onclick="openWorkshopSignup('filmmaking-session')">Sign Up</button>
+                    </div>
+
+                    <div class="workshop-card">
+                        <div class="workshop-header">
+                            <h3>Design Thinking Workshop</h3>
+                            <span class="workshop-date">December 5, 2025</span>
+                        </div>
+                        <p>Learn the design thinking process and apply it to real-world creative challenges. Work in teams to solve problems and present your solutions.</p>
+                        <div class="workshop-details">
+                            <span class="duration"><i class="fas fa-clock"></i> 2 hours</span>
+                            <span class="level"><i class="fas fa-signal"></i> Beginner</span>
+                            <span class="price"><i class="fas fa-dollar-sign"></i> Free</span>
+                        </div>
+                        <button class="btn btn-primary" onclick="openWorkshopSignup('design-thinking')">Sign Up</button>
+                    </div>
+
+                    <div class="workshop-card">
+                        <div class="workshop-header">
+                            <h3>Music Production Masterclass</h3>
+                            <span class="workshop-date">December 20, 2025</span>
+                        </div>
+                        <p>Advanced techniques in music production, mixing, and mastering. Bring your laptop and create a track during the session!</p>
+                        <div class="workshop-details">
+                            <span class="duration"><i class="fas fa-clock"></i> 4 hours</span>
+                            <span class="level"><i class="fas fa-signal"></i> Intermediate</span>
+                            <span class="price"><i class="fas fa-dollar-sign"></i> Free</span>
+                        </div>
+                        <button class="btn btn-primary" onclick="openWorkshopSignup('music-masterclass')">Sign Up</button>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Community Section -->
+        <section id="community" class="section">
+            <div class="container">
+                <h2 class="section-title">Community</h2>
+                <div class="community-content">
+                    <div class="community-forum">
+                        <h3>Discussion Forums</h3>
+                        <div class="forum-threads">
+                            <div class="thread">
+                                <div class="thread-header">
+                                    <h4>Best Camera for Beginners?</h4>
+                                    <span class="thread-stats">15 replies</span>
+                                </div>
+                                <p>Looking for recommendations for my first camera. Budget around $500. Any suggestions?</p>
+                                <div class="thread-meta">
+                                    <span class="author">@sarah_films</span>
+                                    <span class="time">2 hours ago</span>
+                                </div>
+                            </div>
+                            <div class="thread">
+                                <div class="thread-header">
+                                    <h4>Collaboration Project - Music Video</h4>
+                                    <span class="thread-stats">8 replies</span>
+                                </div>
+                                <p>Anyone interested in collaborating on a music video? I'm a filmmaker looking for a musician!</p>
+                                <div class="thread-meta">
+                                    <span class="author">@marcus_creates</span>
+                                    <span class="time">1 day ago</span>
+                                </div>
+                            </div>
+                            <div class="thread">
+                                <div class="thread-header">
+                                    <h4>Design Inspiration Share</h4>
+                                    <span class="thread-stats">23 replies</span>
+                                </div>
+                                <p>Post your latest designs here! Let's inspire each other and get feedback.</p>
+                                <div class="thread-meta">
+                                    <span class="author">@zoe_designs</span>
+                                    <span class="time">3 days ago</span>
+                                </div>
+                            </div>
+                        </div>
+                        <button class="btn btn-secondary">Join Discussion</button>
+                    </div>
+
+                    <div class="community-showcase">
+                        <h3>Creator Showcase</h3>
+                        <div class="showcase-gallery">
+                            <div class="showcase-item">
+                                <div class="showcase-image">
+                                    <i class="fas fa-play-circle"></i>
+                                </div>
+                                <h4>Short Film: "Dreams"</h4>
+                                <p>by @sarah_films</p>
+                            </div>
+                            <div class="showcase-item">
+                                <div class="showcase-image">
+                                    <i class="fas fa-image"></i>
+                                </div>
+                                <h4>Album Cover Design</h4>
+                                <p>by @marcus_creates</p>
+                            </div>
+                            <div class="showcase-item">
+                                <div class="showcase-image">
+                                    <i class="fas fa-music"></i>
+                                </div>
+                                <h4>Original Track: "Midnight"</h4>
+                                <p>by @zoe_designs</p>
+                            </div>
+                        </div>
+                        <button class="btn btn-secondary">Submit Your Work</button>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Sign Up Section -->
+        <section id="signup" class="section">
+            <div class="container">
+                <h2 class="section-title">Join Our Community</h2>
+                <div class="auth-container">
+                    <div class="auth-tabs">
+                        <button class="auth-tab active" onclick="showAuthForm('signup')">Sign Up</button>
+                        <button class="auth-tab" onclick="showAuthForm('login')">Log In</button>
+                    </div>
+                    
+                    <div class="auth-forms">
+                        <form id="signup-form" class="auth-form active">
+                            <h3>Create Your Account</h3>
+                            <div class="form-group">
+                                <label for="signup-name">Full Name</label>
+                                <input type="text" id="signup-name" required>
+                            </div>
+                            <div class="form-group">
+                                <label for="signup-email">Email</label>
+                                <input type="email" id="signup-email" required>
+                            </div>
+                            <div class="form-group">
+                                <label for="signup-age">Age</label>
+                                <input type="number" id="signup-age" min="13" max="19" required>
+                            </div>
+                            <div class="form-group">
+                                <label for="signup-password">Password</label>
+                                <input type="password" id="signup-password" required>
+                            </div>
+                            <button type="submit" class="btn btn-primary">Sign Up</button>
+                        </form>
+
+                        <form id="login-form" class="auth-form">
+                            <h3>Welcome Back</h3>
+                            <div class="form-group">
+                                <label for="login-email">Email</label>
+                                <input type="email" id="login-email" required>
+                            </div>
+                            <div class="form-group">
+                                <label for="login-password">Password</label>
+                                <input type="password" id="login-password" required>
+                            </div>
+                            <button type="submit" class="btn btn-primary">Log In</button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-links">
+                    <div class="footer-column">
+                        <h4>Learn</h4>
+                        <ul>
+                            <li><a href="#modules" onclick="showSection('modules')">Modules</a></li>
+                            <li><a href="#workshops" onclick="showSection('workshops')">Workshops</a></li>
+                            <li><a href="#community" onclick="showSection('community')">Community</a></li>
+                        </ul>
+                    </div>
+                    <div class="footer-column">
+                        <h4>Connect</h4>
+                        <ul>
+                            <li><a href="#about" onclick="showSection('about')">About Us</a></li>
+                            <li><a href="#signup" onclick="showSection('signup')">Sign Up</a></li>
+                            <li><a href="#home" onclick="showSection('home')">Home</a></li>
+                        </ul>
+                    </div>
+                    <div class="footer-column">
+                        <h4>Follow Us</h4>
+                        <ul>
+                            <li><a href="https://www.instagram.com/entropy_productions/" target="_blank" rel="noopener noreferrer"><i class="fab fa-instagram"></i> Instagram</a></li>
+                            <li><a href="https://www.youtube.com/@ENTROPY_PRODUCTIONSS" target="_blank" rel="noopener noreferrer"><i class="fab fa-youtube"></i> YouTube</a></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2025 Entropy Productions. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Workshop Signup Modal -->
+    <div id="workshop-modal" class="modal">
+        <div class="modal-content">
+            <span class="close" onclick="closeWorkshopModal()">&times;</span>
+            <h3>Workshop Sign Up</h3>
+            <form id="workshop-signup-form">
+                <div class="form-group">
+                    <label for="workshop-name">Full Name</label>
+                    <input type="text" id="workshop-name" required>
+                </div>
+                <div class="form-group">
+                    <label for="workshop-email">Email</label>
+                    <input type="email" id="workshop-email" required>
+                </div>
+                <div class="form-group">
+                    <label for="workshop-experience">Experience Level</label>
+                    <select id="workshop-experience" required>
+                        <option value="">Select your level</option>
+                        <option value="beginner">Beginner</option>
+                        <option value="intermediate">Intermediate</option>
+                        <option value="advanced">Advanced</option>
+                    </select>
+                </div>
+                <button type="submit" class="btn btn-primary">Confirm Sign Up</button>
+            </form>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
