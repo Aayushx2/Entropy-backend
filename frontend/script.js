@@ -227,7 +227,7 @@ async function handleSignup(e) {
     const password = document.getElementById('signup-password').value;
     
     try {
-        const response = await fetch('/signup', {
+        const response = await fetch(`${window.ENV.API_BASE}/signup`, {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json',
@@ -271,7 +271,7 @@ async function handleLogin(e) {
     const password = document.getElementById('login-password').value;
     
     try {
-        const response = await fetch('/login', {
+        const response = await fetch(`${window.ENV.API_BASE}/login`, {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json',
@@ -317,7 +317,7 @@ async function handleModuleEnrollment(moduleId) {
     }
     
     try {
-        const response = await fetch('/modules/enroll', {
+        const response = await fetch(`${window.ENV.API_BASE}/modules/enroll`, {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json',
@@ -732,7 +732,7 @@ let modulesData = {};
 // Load modules from API
 async function loadModules() {
     try {
-        const response = await fetch('/api/entropy');
+        const response = await fetch(`${window.ENV.API_BASE}/api/entropy`);
         const data = await response.json();
         
         if (data.success) {
@@ -878,7 +878,7 @@ async function loadMyLearning() {
     }
     
     try {
-        const response = await fetch('/modules', {
+        const response = await fetch(`${window.ENV.API_BASE}/modules`, {
             headers: {
                 'Authorization': `Bearer ${token}`
             }
@@ -1115,7 +1115,7 @@ async function markAsCompleted(moduleId) {
     }
     
     try {
-        const response = await fetch('/modules/complete', {
+        const response = await fetch(`${window.ENV.API_BASE}/modules/complete`, {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json',
