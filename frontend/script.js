@@ -29,6 +29,22 @@ async function jsonSafe(response) {
     try { return await response.json(); } catch (_) { throw new Error('Unexpected non-JSON response'); }
 }
 
+// Robust API base and fetch wrapper
+const BASE_URL = (window.ENV && window.ENV.API_BASE) ? window.ENV.API_BASE : 'http://localhost:3000';
+
+async function apiFetch(path, options = {}) {
+    const res = await fetch(`${BASE_URL}${path}`, options);
+    if (!res.ok) {
+        const errText = await res.text().catch(() => '');
+        throw new Error(`API ${res.status} at ${path}: ${errText.slice(0,250)}`);
+    }
+    const contentType = res.headers.get('content-type') || '';
+    if (contentType.includes('application/json')) {
+        return res.json();
+    }
+    return res.text();
+}
+
 function initializePage() {
     // Show home section by default
     showSection('home');
@@ -751,10 +767,13 @@ let modulesData = {};
 // Load modules from API
 async function loadModules() {
     try {
-        const response = await fetch(`${window.ENV.API_BASE}/api/entropy`);
-        const data = await jsonSafe(response);
+        const data = await apiFetch('/api/entropy');
+        if (typeof data === 'string') {
+            console.error('Expected JSON but got string:', data);
+            showNotification('Server error while loading modules', 'error');
+            return;
+        }
         console.log('Modules:', data);
-        
         if (data.success) {
             modulesData = data.data;
             updateModulesDisplay();
@@ -763,7 +782,7 @@ async function loadModules() {
         }
     } catch (error) {
         console.error('Error loading modules:', error);
-        showNotification('Failed to load modules. Please check if the backend server is running.', 'error');
+        showNotification('Unable to load modules — check console for details', 'error');
     }
 }
 
