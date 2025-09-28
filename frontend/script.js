@@ -235,7 +235,7 @@ async function handleSignup(e) {
             body: JSON.stringify({ name, email, age: parseInt(age), password })
         });
         
-        const data = await response.json();
+        const data = await parseJsonSafe(response);
         
         if (data.success) {
             // Store token and user data
@@ -279,7 +279,7 @@ async function handleLogin(e) {
             body: JSON.stringify({ email, password })
         });
         
-        const data = await response.json();
+        const data = await parseJsonSafe(response);
         
         if (data.success) {
             // Store token and user data
@@ -326,7 +326,7 @@ async function handleModuleEnrollment(moduleId) {
             body: JSON.stringify({ moduleId: parseInt(moduleId) })
         });
         
-        const data = await response.json();
+        const data = await parseJsonSafe(response);
         
         if (data.success) {
             showNotification(`Successfully enrolled in ${data.data.module.title}!`, 'success');
@@ -727,14 +727,27 @@ const debouncedScrollHandler = debounce(() => {
 window.addEventListener('scroll', debouncedScrollHandler);
 
 // API Integration Functions
+async function parseJsonSafe(response) {
+	const contentType = response.headers.get('content-type') || '';
+	try {
+		if (contentType.includes('application/json')) {
+			return await response.json();
+		}
+		const text = await response.text().catch(() => '');
+		return { success: false, error: 'Unexpected non-JSON response', status: response.status, message: text };
+	} catch (err) {
+		const text = await response.text().catch(() => '');
+		return { success: false, error: 'Failed to parse JSON response', status: response.status, message: text };
+	}
+}
 let modulesData = {};
 
 // Load modules from API
 async function loadModules() {
     try {
-        const response = await fetch('https://entropyproductions.site/api/entropy');
-        const data = await response.json();
-        console.log(data);
+        const response = await fetch(`${window.ENV.API_BASE}/api/entropy`);
+        const data = await parseJsonSafe(response);
+        console.log('Modules:', data);
         
         if (data.success) {
             modulesData = data.data;
@@ -885,7 +898,7 @@ async function loadMyLearning() {
             }
         });
         
-        const data = await response.json();
+        const data = await parseJsonSafe(response);
         
         if (data.success) {
             myLearningData.enrolled = data.data.enrolledModules || [];
@@ -1125,7 +1138,7 @@ async function markAsCompleted(moduleId) {
             body: JSON.stringify({ moduleId })
         });
         
-        const data = await response.json();
+        const data = await parseJsonSafe(response);
         
         if (data.success) {
             showNotification('Module marked as completed!', 'success');
