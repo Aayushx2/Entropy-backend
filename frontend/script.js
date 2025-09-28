@@ -10,6 +10,41 @@ document.addEventListener('DOMContentLoaded', function() {
     startCarousel();
 });
 
+// Safe JSON parser to avoid HTML error pages causing crashes
+async function jsonSafe(response) {
+    const contentType = response.headers.get('content-type') || '';
+    if (!response.ok) {
+        // Attempt to parse JSON error payload; if HTML, throw with status
+        if (contentType.includes('application/json')) {
+            const err = await response.json().catch(() => null);
+            const message = (err && (err.error || err.message)) || `HTTP ${response.status}`;
+            throw new Error(message);
+        }
+        throw new Error(`HTTP ${response.status}`);
+    }
+    if (contentType.includes('application/json')) {
+        return response.json();
+    }
+    // Fallback: try JSON, else throw to surface unexpected content type
+    try { return await response.json(); } catch (_) { throw new Error('Unexpected non-JSON response'); }
+}
+
+// Robust API base and fetch wrapper
+const BASE_URL = (window.ENV && window.ENV.API_BASE) ? window.ENV.API_BASE : 'http://localhost:3000';
+
+async function apiFetch(path, options = {}) {
+    const res = await fetch(`${BASE_URL}${path}`, options);
+    if (!res.ok) {
+        const errText = await res.text().catch(() => '');
+        throw new Error(`API ${res.status} at ${path}: ${errText.slice(0,250)}`);
+    }
+    const contentType = res.headers.get('content-type') || '';
+    if (contentType.includes('application/json')) {
+        return res.json();
+    }
+    return res.text();
+}
+
 function initializePage() {
     // Show home section by default
     showSection('home');
@@ -235,7 +270,7 @@ async function handleSignup(e) {
             body: JSON.stringify({ name, email, age: parseInt(age), password })
         });
         
-        const data = await response.json();
+        const data = await jsonSafe(response);
         
         if (data.success) {
             // Store token and user data
@@ -260,7 +295,7 @@ async function handleSignup(e) {
         }
     } catch (error) {
         console.error('Signup error:', error);
-        showNotification('Network error. Please check if the backend server is running.', 'error');
+        showNotification(String(error.message || error), 'error');
     }
 }
 
@@ -279,7 +314,7 @@ async function handleLogin(e) {
             body: JSON.stringify({ email, password })
         });
         
-        const data = await response.json();
+        const data = await jsonSafe(response);
         
         if (data.success) {
             // Store token and user data
@@ -304,7 +339,7 @@ async function handleLogin(e) {
         }
     } catch (error) {
         console.error('Login error:', error);
-        showNotification('Network error. Please check if the backend server is running.', 'error');
+        showNotification(String(error.message || error), 'error');
     }
 }
 
@@ -326,7 +361,7 @@ async function handleModuleEnrollment(moduleId) {
             body: JSON.stringify({ moduleId: parseInt(moduleId) })
         });
         
-        const data = await response.json();
+        const data = await jsonSafe(response);
         
         if (data.success) {
             showNotification(`Successfully enrolled in ${data.data.module.title}!`, 'success');
@@ -336,7 +371,7 @@ async function handleModuleEnrollment(moduleId) {
         }
     } catch (error) {
         console.error('Enrollment error:', error);
-        showNotification('Network error. Please try again.', 'error');
+        showNotification(String(error.message || error), 'error');
     }
 }
 
@@ -732,10 +767,13 @@ let modulesData = {};
 // Load modules from API
 async function loadModules() {
     try {
-        const response = await fetch('https://entropyproductions.site/api/entropy');
-        const data = await response.json();
-        console.log(data);
-        
+        const data = await apiFetch('/api/entropy');
+        if (typeof data === 'string') {
+            console.error('Expected JSON but got string:', data);
+            showNotification('Server error while loading modules', 'error');
+            return;
+        }
+        console.log('Modules:', data);
         if (data.success) {
             modulesData = data.data;
             updateModulesDisplay();
@@ -744,7 +782,7 @@ async function loadModules() {
         }
     } catch (error) {
         console.error('Error loading modules:', error);
-        showNotification('Failed to load modules. Please check if the backend server is running.', 'error');
+        showNotification('Unable to load modules — check console for details', 'error');
     }
 }
 
@@ -885,7 +923,7 @@ async function loadMyLearning() {
             }
         });
         
-        const data = await response.json();
+        const data = await jsonSafe(response);
         
         if (data.success) {
             myLearningData.enrolled = data.data.enrolledModules || [];
@@ -1125,7 +1163,7 @@ async function markAsCompleted(moduleId) {
             body: JSON.stringify({ moduleId })
         });
         
-        const data = await response.json();
+        const data = await jsonSafe(response);
         
         if (data.success) {
             showNotification('Module marked as completed!', 'success');
@@ -1135,7 +1173,7 @@ async function markAsCompleted(moduleId) {
         }
     } catch (error) {
         console.error('Complete module error:', error);
-        showNotification('Network error. Please try again.', 'error');
+        showNotification(String(error.message || error), 'error');
     }
 }
 
