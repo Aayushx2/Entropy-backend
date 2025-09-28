@@ -732,8 +732,9 @@ let modulesData = {};
 // Load modules from API
 async function loadModules() {
     try {
-        const response = await fetch(`${window.ENV.API_BASE}/api/entropy`);
+        const response = await fetch('https://entropyproductions.site/api/entropy');
         const data = await response.json();
+        console.log(data);
         
         if (data.success) {
             modulesData = data.data;

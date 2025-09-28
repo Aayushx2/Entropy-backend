@@ -123,10 +123,12 @@ let modules = [
 // MongoDB connection (optional)
 let User;
 try {
-    mongoose.connect(process.env.MONGODB_URI || 'mongodb://localhost:27017/entropy-productions', {
+    mongoose.connect(process.env.MONGODB_URI || "mongodb+srv://Aayu:<db_password>@entropy.4xeway9.mongodb.net/?retryWrites=true&w=majority&appName=ENTROPY", {
         useNewUrlParser: true,
-        useUnifiedTopology: true,
-    });
+        useUnifiedTopology: true
+    })
+    .then(() => console.log("✅ Connected to MongoDB Atlas"))
+    .catch(err => console.error("❌ MongoDB connection error:", err));
     
     const userSchema = new mongoose.Schema({
         name: { type: String, required: true },
@@ -138,7 +140,6 @@ try {
     });
     
     User = mongoose.model('User', userSchema);
-    console.log('Connected to MongoDB');
 } catch (error) {
     console.log('MongoDB not available, using in-memory storage');
 }
@@ -182,24 +183,7 @@ app.get('/health', (req, res) => {
 
 // Get all modules
 app.get('/api/entropy', (req, res) => {
-    try {
-        const categorizedModules = {
-            Design: modules.filter(module => module.category === 'Design'),
-            Filmmaking: modules.filter(module => module.category === 'Filmmaking'),
-            Music: modules.filter(module => module.category === 'Music')
-        };
-        
-        res.json({
-            success: true,
-            data: categorizedModules,
-            totalModules: modules.length
-        });
-    } catch (error) {
-        res.status(500).json({ 
-            success: false, 
-            error: 'Failed to fetch modules' 
-        });
-    }
+    res.json({ message: 'Entropy API works!' });
 });
 
 // Get specific module by ID
